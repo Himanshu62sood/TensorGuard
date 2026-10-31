@@ -1,0 +1,30 @@
+﻿# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual Environment
+.venv/
+env/
+venv/
+ENV/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local databases & artifacts
+tensorguard_audit.db
+tensorguard_report.html
+tensorguard_ci_report.html
+test_models/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/

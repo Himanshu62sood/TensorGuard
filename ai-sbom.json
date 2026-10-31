@@ -1,0 +1,42 @@
+{
+  "bomFormat": "CycloneDX-AI",
+  "specVersion": "1.5",
+  "targetDirectory": "test_models/malicious",
+  "components": [
+    {
+      "name": "modeling_exploit.py",
+      "format": "python_script",
+      "sha256": "f64cb4a52983971c1938185742e72f63f3cc71bf3b6817d72128209f70613efe",
+      "size": 74
+    },
+    {
+      "name": "pytorch_model.bin",
+      "format": "pickle",
+      "sha256": "2a7dd51ee621948c56b99b3bcd6bf18aa78d3379b25f0933b18290d2d72377b7",
+      "size": 43
+    }
+  ],
+  "vulnerabilities": [
+    {
+      "id": "TG-002-SUSPICIOUS-IMPORT",
+      "severity": "MEDIUM",
+      "file": "test_models/malicious\\modeling_exploit.py",
+      "description": "High-risk network/process library imported: `subprocess`",
+      "evidence": "Line 1"
+    },
+    {
+      "id": "TG-004-SHELL-EXEC",
+      "severity": "CRITICAL",
+      "file": "test_models/malicious\\modeling_exploit.py",
+      "description": "Shell command invocation `subprocess.Popen()` detected",
+      "evidence": "Line 2"
+    },
+    {
+      "id": "TG-001-PICKLE-RCE",
+      "severity": "CRITICAL",
+      "file": "test_models/malicious\\pytorch_model.bin",
+      "description": "Dangerous execution trigger `nt.system` found in serialized stream",
+      "evidence": "Opcode STACK_GLOBAL at byte offset 25"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+﻿name: TensorGuard AI Supply Chain Gate
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-and-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev]
+
+      - name: Run Test Suite
+        run: pytest -v
+
+      - name: TensorGuard Repository Self-Audit
+        run: |
+          tensorguard scan . --fail-on HIGH
+          tensorguard history
+          tensorguard report -o tensorguard_ci_report.html
+
+      - name: Archive Compliance Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tensorguard-audit-report
+          path: tensorguard_ci_report.html
