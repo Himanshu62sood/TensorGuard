@@ -1,5 +1,4 @@
-﻿@'
-name: TensorGuard AI Supply Chain Gate
+﻿name: TensorGuard AI Supply Chain Gate
 
 on:
   push:
@@ -41,4 +40,3 @@ jobs:
         with:
           name: tensorguard-audit-report
           path: tensorguard_ci_report.html
-'@ | Out-File -FilePath ".github\workflows\security-scan.yml" -Encoding utf8
