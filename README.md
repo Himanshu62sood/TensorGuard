@@ -81,14 +81,19 @@ tensorguard report -o audit_report.html
 ┌──────────────────────┐
 │ HTML Executive Report│
 └──────────────────────┘
+
 🔒 Security Model
+
 TensorGuard enforces execution boundaries through:
+
 1.Restricted Class Deserialization: Restricts unpickling strictly to mathematical array primitives (numpy.ndarray, standard structures) and drops unknown modules.
 
 2.Pure Opcode Disassembly: Pickle validation uses state machines over disassembled bytecode tokens rather than calling pickle.load().
 
 3.Chunked Stream Analysis: SafeTensors inspection only pulls the 8-byte metadata header and JSON manifest, mitigating Denial-of-Service (DoS) buffer allocation attacks.
+
 📄 License
+
 Distributed under the Apache-2.0 License.
 ---
 
