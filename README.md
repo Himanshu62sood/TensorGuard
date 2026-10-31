@@ -33,23 +33,28 @@ source .venv/bin/activate
 pip install -e .
 
 💻 CLI Usage
+
 1. Scan Local Artifacts
 # Scan a directory or model file with a fail-safe threshold
 tensorguard scan ./path-to-models --fail-on HIGH
+
 2. Remote Hugging Face Scan
 # Inspect a remote repo in-memory without downloading gigabytes of weights
 tensorguard scan-hf prajjwal1/bert-tiny --fail-on HIGH
+
 3. Sanitize Legacy Pickles
 # Safely convert pickle checkpoints to SafeTensors
 tensorguard sanitize weights.bin --output weights_clean.safetensors
+
 4. Audit History & Compliance Report
 # View past scan histories from SQLite
 tensorguard history
-
 # Export executive HTML report
 tensorguard report -o audit_report.html
+
 🏛️ Architecture Overview
-┌────────────────────────────┐
+
+                      ┌────────────────────────────┐
                       │    TensorGuard CLI Entry   │
                       └─────────────┬──────────────┘
                                     │
@@ -87,11 +92,3 @@ TensorGuard enforces execution boundaries through:
 Distributed under the Apache-2.0 License.
 ---
 
-### Push the Updated README to GitHub
-
-Run these commands in PowerShell:
-
-```powershell
-git add README.md
-git commit -m "docs: finalize README with live CI badge and accurate clone path"
-git push origin main
